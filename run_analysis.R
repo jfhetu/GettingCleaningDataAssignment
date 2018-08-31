@@ -19,7 +19,7 @@ run_analysis <- function(){
   ##Training activity labels
   training_table_filename <- file.path(directory,"y_train.txt")
   if(!file.exists(training_table_filename)) 
-  {stop(paste("File ", training_table_filename, "does not exist"))}
+    {stop(paste("File ", training_table_filename, "does not exist"))}
   trainingactivity <- read.table(training_table_filename)
   
   ##Training subjects
@@ -41,7 +41,7 @@ run_analysis <- function(){
   col.from <- names(training)
   col.to <- c("subject", "activity", features.names) 
   
-  training <- training %>% rename_at(vars(col.from), function(x) col.to) %>% head(2)
+  training <- training %>% rename_at(vars(col.from), function(x) col.to) 
   
   #open the test data set
   directory <- file.path("UCI HAR Dataset","test")
@@ -69,7 +69,7 @@ run_analysis <- function(){
   col.from <- names(test)
   col.to <- c("subject", "activity", features.names) 
   
-  test<- test %>% rename_at(vars(col.from), function(x) col.to) %>% head(2)
+  test<- test %>% rename_at(vars(col.from), function(x) col.to) 
   
   # Merge the data sets
   data.all <- bind_rows(training, test)
